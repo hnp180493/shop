@@ -1,12 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Xml.Linq;
 using TeduShop.Model.Abstract;
 
 namespace TeduShop.Model.Models
 {
-    [Table("Products")]
-    public class Product : Auditable
+    [Table("Posts")]
+    public class Post : Auditable
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -18,6 +17,7 @@ namespace TeduShop.Model.Models
 
         [Required]
         [MaxLength(256)]
+        [Column(TypeName = "varchar")]
         public string Alias { set; get; }
 
         [Required]
@@ -26,14 +26,9 @@ namespace TeduShop.Model.Models
         [MaxLength(256)]
         public string Image { set; get; }
 
-        public XElement MoreImages { set; get; }
-        public decimal Price { set; get; }
-
-        public decimal? PromotionPrice { set; get; }
-        public int? Warranty { set; get; }
-
         [MaxLength(500)]
         public string Description { set; get; }
+
         public string Content { set; get; }
 
         public bool? HomeFlag { set; get; }
@@ -41,6 +36,6 @@ namespace TeduShop.Model.Models
         public int? ViewCount { set; get; }
 
         [ForeignKey("CategoryID")]
-        public virtual ProductCategory ProductCategory { set; get; }
+        public virtual PostCategory PostCategory { set; get; }
     }
 }
