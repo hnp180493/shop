@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace TeduShop.Data.Infrastructure
+namespace Shop.Data.Infrastructure
 {
     public interface IRepository<T> where T : class
     {

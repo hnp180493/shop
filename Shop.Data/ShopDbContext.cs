@@ -1,5 +1,5 @@
 ﻿using System.Data.Entity;
-using TeduShop.Model.Models;
+using Shop.Model.Models;
 
 namespace Shop.Data
 {
