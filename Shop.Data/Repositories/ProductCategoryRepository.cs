@@ -1,24 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Shop.Data.Infrastructure;
 using Shop.Model.Models;
 
 namespace Shop.Data.Repositories
 {
-    public interface IProductCategoryRepository
+    public interface IProductCategoryRepository : IRepository<ProductCategory>
     {
-        IEnumerable<ProductCategory> GetAlias(string alias);
+        IEnumerable<ProductCategory> GetByAlias(string alias);
     }
-    public class ProductCategoryRepository: RepositoryBase<ProductCategory>, IProductCategoryRepository
+
+    public class ProductCategoryRepository : RepositoryBase<ProductCategory>, IProductCategoryRepository
     {
-        public ProductCategoryRepository(IDbFactory dbFactory):base(dbFactory)
+        public ProductCategoryRepository(IDbFactory dbFactory)
+            : base(dbFactory)
         {
         }
 
-        public IEnumerable<ProductCategory> GetAlias(string alias)
+        public IEnumerable<ProductCategory> GetByAlias(string alias)
         {
             return this.DbContext.ProductCategories.Where(x => x.Alias == alias);
         }
