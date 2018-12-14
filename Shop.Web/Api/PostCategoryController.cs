@@ -29,9 +29,9 @@ namespace Shop.Web.Api
             {
                 var listCategory = _postCategoryService.GetAll();
 
-                //var listPostCategoryVm = Mapper.Map<List<PostCategoryViewModel>>(listCategory);
+                var listPostCategoryVm = Mapper.Map<List<PostCategoryViewModel>>(listCategory);
 
-                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listCategory);
+                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listPostCategoryVm);
 
                 return response;
             });

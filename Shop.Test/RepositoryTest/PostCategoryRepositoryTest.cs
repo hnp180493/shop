@@ -37,5 +37,13 @@ namespace Shop.Test.RepositoryTest
             unitOfWork.Commit();
             Assert.AreEqual(1, result.ID);
         }
+
+        [TestMethod]
+        public void PostCategoryRepository_GetAll()
+        {
+            var result = postCategoryRepository.GetAll();
+            var count = result.Count();
+            Assert.IsTrue(count > 0);
+        }
     }
 }
