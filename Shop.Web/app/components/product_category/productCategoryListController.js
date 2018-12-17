@@ -2,8 +2,12 @@
     app.controller("productCategoryListController", productCategoryListController);
 
 
-    productCategoryListController.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox'];
-    function productCategoryListController($scope, apiService, notificationService, $ngBootbox) {
+    productCategoryListController.$inject = [
+        '$scope', 'apiService',
+        'notificationService', '$ngBootbox',
+        '$filter'
+    ];
+    function productCategoryListController($scope, apiService, notificationService, $ngBootbox, $filter) {
         $scope.productCategories = [];
         $scope.page = 0;
         $scope.pageCount = 0;
@@ -11,6 +15,55 @@
         $scope.keyword = '';
         $scope.search = search;
         $scope.del = del;
+
+        $scope.deleteMulti = function () {
+            var listId = [];
+            $.each($scope.selected, function (i, item) {
+                listId.push(item.ID);
+            })
+            var config = {
+                params: {
+                    listIdJson: JSON.stringify(listId)
+                }
+            }
+            apiService.del('/api/productCategory/deletemulti', config,
+                function (result) {
+                    notificationService.displaySuccess(`Xóa thành công ${result.data} bản ghi`);
+                    search();
+                },
+                function (error) {
+                    notificationService.displayWarning("Có lỗi xảy ra!");
+                }
+
+            );
+        }
+
+        let isAll = false;
+
+        $scope.checkAll = function () {
+            if (isAll === false) {
+                angular.forEach($scope.productCategories, function (item) {
+                    item.checked = true;
+                });
+                isAll = true;
+            } else {
+                angular.forEach($scope.productCategories, function (item) {
+                    item.checked = false;
+                });
+                isAll = false;
+            }          
+        }
+
+        $scope.$watch("productCategories", function (n, o) {
+            var checked = $filter("filter")(n, { checked: true });
+            if (checked.length) {
+                $scope.selected = checked;
+                $('#btnDelete').removeAttr('disabled');
+            } else {
+                $('#btnDelete').attr('disabled', 'disabled');
+            }
+        }, true);
+
         function search() {
             getProductCategories();
         }

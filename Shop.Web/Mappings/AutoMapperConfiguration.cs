@@ -13,6 +13,7 @@ namespace Shop.Web.Mappings
             Mapper.CreateMap<Tag, TagViewModel>();
             Mapper.CreateMap<ProductCategory, ProductCategoryViewModel>();
             Mapper.CreateMap<Product, ProductViewModel>();
+            Mapper.CreateMap<ProductViewModel, Product>();
             Mapper.CreateMap<ProductCategoryViewModel, ProductCategory>();
         }
     }

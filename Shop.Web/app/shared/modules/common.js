@@ -1,4 +1,4 @@
 ﻿(function(){
-	angular.module("commonModule", ['ui.router', 'ngBootbox']);
+	angular.module("commonModule", ['ui.router', 'ngBootbox', 'ngCkeditor']);
 
 })();

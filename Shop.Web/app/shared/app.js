@@ -2,9 +2,9 @@
 (function () {
     angular.module("shopModule",
         [
-            'productsModule',
             'productCategoryModule',
             'commonModule',
+            'productModule',
         ]).config(config);
 
     function config($stateProvider, $urlRouterProvider) {

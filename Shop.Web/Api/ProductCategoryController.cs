@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Script.Serialization;
 
 namespace Shop.Web.Api
 {
@@ -133,6 +134,32 @@ namespace Shop.Web.Api
                     var oldData = _productCategoryService.Delete(id);
                     _productCategoryService.Save();
                     response = request.CreateResponse(HttpStatusCode.OK, oldData);
+                }
+                else
+                {
+                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                return response;
+
+            });
+        }
+
+        [Route("deletemulti")]
+        public HttpResponseMessage DeleteMulti(HttpRequestMessage request, string listIdJson)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (ModelState.IsValid)
+                {
+                    var listId = new JavaScriptSerializer().Deserialize<List<int>>(listIdJson);
+                    foreach(var id in listId)
+                    {
+                        _productCategoryService.Delete(id);
+                    }
+                     
+                    _productCategoryService.Save();
+                    response = request.CreateResponse(HttpStatusCode.OK, listId.Count);
                 }
                 else
                 {

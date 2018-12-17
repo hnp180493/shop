@@ -1,17 +1,17 @@
 ﻿(function () {
-    angular.module("productsModule", ['commonModule']).config(config);
+    angular.module("productModule", ['commonModule']).config(config);
 
     function config($stateProvider, $urlRouterProvider) {
         $stateProvider.state('products', {
             url: "/products",
             templateUrl: "/app/components/products/productListView.html",
             controller: "productListController"
-        }).state('product_add', {
-            url: "/product_add",
+        }).state('add_product', {
+            url: "/add_product",
             templateUrl: "/app/components/products/productAddView.html",
             controller: "productAddController"
-        }).state('product_edit', {
-            url: "/product_edit",
+        }).state('edit_product', {
+            url: "/edit_product",
             templateUrl: "/app/components/products/productEditView.html",
             controller: "productEditController"
         });  
