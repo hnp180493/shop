@@ -3,14 +3,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Shop.Model.Models
 {
-    [Table("Footers")]
-    public class Footer
+    [Table("Tags")]
+    public class Tag
     {
         [Key]
         [MaxLength(50)]
+        [Column(TypeName = "varchar")]
         public string ID { set; get; }
 
+        [MaxLength(50)]
         [Required]
-        public string Content { set; get; }
+        public string Name { set; get; }
+
+        [MaxLength(50)]
+        [Required]
+        public string Type { set; get; }
     }
 }
