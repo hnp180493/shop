@@ -1,6 +1,4 @@
-﻿using Shop.Data;
-
-namespace Shop.Data.Infrastructure
+﻿namespace Shop.Data.Infrastructure
 {
     public class DbFactory : Disposable, IDbFactory
     {

@@ -1,7 +1,6 @@
 ﻿(function (app) {
     app.controller("productListController", productListController);
 
-
     productListController.$inject = [
         '$scope', 'apiService',
         'notificationService', '$ngBootbox',
@@ -51,7 +50,7 @@
                     item.checked = false;
                 });
                 isAll = false;
-            }          
+            }
         }
 
         $scope.$watch("products", function (n, o) {
@@ -97,7 +96,7 @@
 
         function del(id) {
             $ngBootbox.confirm("Bạn có muốn xóa không?").then(function () {
-                apiService.del(`/api/product/delete?id=${id}`,null,
+                apiService.del(`/api/product/delete?id=${id}`, null,
                     function (result) {
                         notificationService.displaySuccess("Xóa thành công!");
                         search();
@@ -108,9 +107,7 @@
 
                 );
             })
-            
         }
-
 
         $scope.getproducts();
     }

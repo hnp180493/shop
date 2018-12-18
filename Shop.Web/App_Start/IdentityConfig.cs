@@ -3,11 +3,11 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
+using Shop.Data;
+using Shop.Model.Models;
 using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Shop.Data;
-using Shop.Model.Models;
 
 namespace Shop.Web.App_Start
 {
@@ -18,6 +18,7 @@ namespace Shop.Web.App_Start
         {
         }
     }
+
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {

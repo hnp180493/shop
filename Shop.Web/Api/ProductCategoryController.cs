@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Shop.Data.Infrastructure;
 using Shop.Model.Models;
 using Shop.Service;
 using Shop.Web.Infrastructure.Core;
@@ -16,10 +15,11 @@ namespace Shop.Web.Api
     [RoutePrefix("api/productCategory")]
     public class ProductCategoryController : ApiControllerBase
     {
-        IProductCategoryService _productCategoryService;
-        public ProductCategoryController(IErrorService errorService, 
-            IProductCategoryService productCategoryService) 
-            :base(errorService)
+        private IProductCategoryService _productCategoryService;
+
+        public ProductCategoryController(IErrorService errorService,
+            IProductCategoryService productCategoryService)
+            : base(errorService)
         {
             this._productCategoryService = productCategoryService;
         }
@@ -40,7 +40,7 @@ namespace Shop.Web.Api
                     Page = page,
                     Items = productsView,
                     TotalCount = totalRows,
-                    TotalPages= (int)Math.Ceiling((decimal)totalRows/pageSize),
+                    TotalPages = (int)Math.Ceiling((decimal)totalRows / pageSize),
                 };
                 HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, pagination);
 
@@ -83,7 +83,7 @@ namespace Shop.Web.Api
         {
             return CreateHttpResponse(request, () =>
             {
-                HttpResponseMessage response= null;
+                HttpResponseMessage response = null;
                 if (ModelState.IsValid)
                 {
                     var category = Mapper.Map<ProductCategory>(categoryVm);
@@ -96,7 +96,6 @@ namespace Shop.Web.Api
                     response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                 }
                 return response;
-
             });
         }
 
@@ -119,7 +118,6 @@ namespace Shop.Web.Api
                     response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                 }
                 return response;
-
             });
         }
 
@@ -140,7 +138,6 @@ namespace Shop.Web.Api
                     response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                 }
                 return response;
-
             });
         }
 
@@ -153,11 +150,11 @@ namespace Shop.Web.Api
                 if (ModelState.IsValid)
                 {
                     var listId = new JavaScriptSerializer().Deserialize<List<int>>(listIdJson);
-                    foreach(var id in listId)
+                    foreach (var id in listId)
                     {
                         _productCategoryService.Delete(id);
                     }
-                     
+
                     _productCategoryService.Save();
                     response = request.CreateResponse(HttpStatusCode.OK, listId.Count);
                 }
@@ -166,7 +163,6 @@ namespace Shop.Web.Api
                     response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                 }
                 return response;
-
             });
         }
     }

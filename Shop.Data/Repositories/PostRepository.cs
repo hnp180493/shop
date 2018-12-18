@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Shop.Data.Infrastructure;
+﻿using Shop.Data.Infrastructure;
 using Shop.Model.Models;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Shop.Data.Repositories

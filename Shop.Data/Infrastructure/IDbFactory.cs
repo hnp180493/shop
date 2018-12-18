@@ -1,5 +1,4 @@
-﻿using Shop.Data;
-using System;
+﻿using System;
 
 namespace Shop.Data.Infrastructure
 {

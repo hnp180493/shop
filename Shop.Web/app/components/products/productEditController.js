@@ -1,7 +1,6 @@
 ﻿(function (app) {
     app.controller("productEditController", productEditController);
 
-
     productEditController.$inject = [
         '$scope', 'apiService',
         'commonService', 'notificationService',
@@ -10,20 +9,18 @@
     function productEditController($scope, apiService,
         commonService, notificationService,
         $stateParams, $state) {
-
         $scope.product = [];
         $scope.getById = getById;
         $scope.editproduct = editproduct;
         $scope.getSeoTitle = function () {
             $scope.product.Alias = commonService.getSeoTitle($scope.product.Name);
         }
-        
+
         function getById() {
             apiService.get(`/api/product/getbyid?id=${$stateParams.id}`, null,
                 function (result) {
                     $scope.product = result.data;
                     $scope.moreImages = JSON.parse($scope.product.MoreImages);
-                    
                 },
                 function (error) {
                     notificationService.displayWarning("Không thể load dữ liệu lên!");
@@ -48,7 +45,7 @@
                 function (result) {
                     notificationService.displaySuccess("Cập nhật thành công!");
                     $state.go('products');
-                }, 
+                },
                 function (error) {
                     notificationService.displayWarning("Cập nhật thất bại!");
                 }
@@ -73,15 +70,12 @@
                 $scope.$apply(function () {
                     $scope.moreImages.push(fileUrl);
                 });
-
             }
             finder.popup();
         }
-        
+
         $scope.getById();
 
         $scope.loadCategories();
     }
-
-
 })(angular.module("productModule"));

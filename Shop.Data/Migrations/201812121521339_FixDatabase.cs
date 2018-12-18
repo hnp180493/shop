@@ -1,8 +1,7 @@
 namespace Shop.Data.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class FixDatabase : DbMigration
     {
         public override void Up()
@@ -33,7 +32,7 @@ namespace Shop.Data.Migrations
             AlterColumn("dbo.Posts", "MetaKeyword", c => c.String(maxLength: 256));
             AlterColumn("dbo.Posts", "MetaDescription", c => c.String(maxLength: 256));
         }
-        
+
         public override void Down()
         {
             AlterColumn("dbo.Posts", "MetaDescription", c => c.String());

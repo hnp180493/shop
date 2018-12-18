@@ -6,7 +6,7 @@
             url: "/productCategories",
             templateUrl: "/app/components/product_category/productCategoryListView.html",
             controller: "productCategoryListController"
-        }).state("add_productcategory",{
+        }).state("add_productcategory", {
             url: "/add_productcategory",
             templateUrl: "/app/components/product_category/productCategoryAddView.html",
             controller: "productCategoryAddController"

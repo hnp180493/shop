@@ -1,22 +1,19 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.Owin;
-using Owin;
-using Autofac;
-using System.Reflection;
-using Shop.Data.Infrastructure;
-using Shop.Data.Repositories;
-using Shop.Service;
-using System.Web.Mvc;
-using System.Web.Http;
+﻿using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
-using Shop.Data;
 using Microsoft.AspNet.Identity;
-using Shop.Model.Models;
-using Microsoft.Owin.Security;
+using Microsoft.Owin;
 using Microsoft.Owin.Security.DataProtection;
+using Owin;
+using Shop.Data;
+using Shop.Data.Infrastructure;
+using Shop.Data.Repositories;
+using Shop.Model.Models;
+using Shop.Service;
+using System.Reflection;
 using System.Web;
+using System.Web.Http;
+using System.Web.Mvc;
 
 [assembly: OwinStartup(typeof(Shop.Web.App_Start.Startup))]
 
@@ -30,6 +27,7 @@ namespace Shop.Web.App_Start
             ConfigAutofac(app);
             ConfigureAuth(app);
         }
+
         private void ConfigAutofac(IAppBuilder app)
         {
             var builder = new ContainerBuilder();
@@ -49,7 +47,6 @@ namespace Shop.Web.App_Start
             builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).InstancePerRequest();
             builder.Register(c => app.GetDataProtectionProvider()).InstancePerRequest();
 
-
             // Repositories
             builder.RegisterAssemblyTypes(typeof(PostCategoryRepository).Assembly)
                 .Where(t => t.Name.EndsWith("Repository"))
@@ -64,7 +61,6 @@ namespace Shop.Web.App_Start
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
             GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver((IContainer)container); //Set the WebApi DependencyResolver
-
         }
     }
 }

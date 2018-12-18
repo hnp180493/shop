@@ -16,7 +16,8 @@ namespace Shop.Web.Api
     [RoutePrefix("api/product")]
     public class ProductController : ApiControllerBase
     {
-        IProductService _productService;
+        private IProductService _productService;
+
         public ProductController(IErrorService errorService, IProductService productService)
             : base(errorService)
         {
@@ -94,7 +95,6 @@ namespace Shop.Web.Api
                     response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                 }
                 return response;
-
             });
         }
 
@@ -117,7 +117,6 @@ namespace Shop.Web.Api
                     response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                 }
                 return response;
-
             });
         }
 
@@ -138,7 +137,6 @@ namespace Shop.Web.Api
                     response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                 }
                 return response;
-
             });
         }
 
@@ -164,7 +162,6 @@ namespace Shop.Web.Api
                     response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                 }
                 return response;
-
             });
         }
     }

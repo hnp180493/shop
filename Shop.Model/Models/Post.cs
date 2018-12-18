@@ -1,8 +1,7 @@
-﻿using System.Collections;
+﻿using Shop.Model.Abstract;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Shop.Model.Abstract;
 
 namespace Shop.Model.Models
 {

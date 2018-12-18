@@ -2,6 +2,5 @@
     app.controller("homeController", homeController);
 
     function homeController() {
-
     }
 })(angular.module("shopModule"));

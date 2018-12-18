@@ -65,7 +65,6 @@
                 $scope.$apply(function () {
                     $scope.moreImages.push(fileUrl);
                 });
-                
             }
             finder.popup();
         }

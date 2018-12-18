@@ -2,39 +2,41 @@
 using Shop.Data.Infrastructure;
 using Shop.Data.Repositories;
 using Shop.Model.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Shop.Service
 {
     public interface IProductService
     {
         Product Add(Product Product);
+
         void Update(Product Product);
+
         IEnumerable<Product> GetAll();
+
         Product GetById(int id);
+
         IEnumerable<Product> GetAll(string keyword);
+
         void Save();
+
         Product Delete(int id);
     }
-    public class ProductService: IProductService
-    {
-        IProductRepository _repository;
-        IProductTagRepository _productTagRepository;
-        ITagRepository _tagRepository;
-        IUnitOfWork _unitOfWork;
 
-        public ProductService(IProductRepository repository, IUnitOfWork unitOfWork, IProductTagRepository productTagRepository,ITagRepository tagRepository)
+    public class ProductService : IProductService
+    {
+        private IProductRepository _repository;
+        private IProductTagRepository _productTagRepository;
+        private ITagRepository _tagRepository;
+        private IUnitOfWork _unitOfWork;
+
+        public ProductService(IProductRepository repository, IUnitOfWork unitOfWork, IProductTagRepository productTagRepository, ITagRepository tagRepository)
         {
             _repository = repository;
             _productTagRepository = productTagRepository;
             _tagRepository = tagRepository;
             _unitOfWork = unitOfWork;
         }
-
 
         public Product Add(Product product)
         {
@@ -43,17 +45,16 @@ namespace Shop.Service
             if (!string.IsNullOrEmpty(product.Tags))
             {
                 var listTags = product.Tags.Split(',');
-                foreach(var tag in listTags)
+                foreach (var tag in listTags)
                 {
                     var tagId = StringHelper.ToUnsignString(tag);
-                    if(_tagRepository.Count(x=>x.ID == tag) == 0)
+                    if (_tagRepository.Count(x => x.ID == tag) == 0)
                     {
                         Tag tagAdd = new Tag
                         {
                             ID = tagId,
                             Name = tag,
                             Type = CommonConstants.ProductTag,
-
                         };
                         _tagRepository.Add(tagAdd);
                     }
@@ -113,7 +114,6 @@ namespace Shop.Service
                             ID = tagId,
                             Name = tag,
                             Type = CommonConstants.ProductTag,
-
                         };
                         _tagRepository.Add(tagAdd);
                     }

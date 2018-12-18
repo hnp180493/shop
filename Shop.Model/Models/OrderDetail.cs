@@ -7,7 +7,7 @@ namespace Shop.Model.Models
     public class OrderDetail
     {
         [Key]
-        [Column(Order =1)]
+        [Column(Order = 1)]
         public int OrderID { set; get; }
 
         [Key]

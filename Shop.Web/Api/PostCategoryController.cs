@@ -1,20 +1,20 @@
 ﻿using AutoMapper;
+using Shop.Model.Models;
+using Shop.Service;
+using Shop.Web.Infrastructure.Core;
+using Shop.Web.Infrastructure.Extensions;
+using Shop.Web.Models;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Shop.Model.Models;
-using Shop.Service;
-using Shop.Web.Infrastructure.Core;
-using Shop.Web.Models;
-using Shop.Web.Infrastructure.Extensions;
 
 namespace Shop.Web.Api
 {
     [RoutePrefix("api/postcategory")]
     public class PostCategoryController : ApiControllerBase
     {
-        IPostCategoryService _postCategoryService;
+        private IPostCategoryService _postCategoryService;
 
         public PostCategoryController(IErrorService errorService, IPostCategoryService postCategoryService) :
             base(errorService)
@@ -56,7 +56,6 @@ namespace Shop.Web.Api
                     _postCategoryService.Save();
 
                     response = request.CreateResponse(HttpStatusCode.Created, category);
-
                 }
                 return response;
             });
@@ -80,7 +79,6 @@ namespace Shop.Web.Api
                     _postCategoryService.Save();
 
                     response = request.CreateResponse(HttpStatusCode.OK);
-
                 }
                 return response;
             });
@@ -101,7 +99,6 @@ namespace Shop.Web.Api
                     _postCategoryService.Save();
 
                     response = request.CreateResponse(HttpStatusCode.OK);
-
                 }
                 return response;
             });

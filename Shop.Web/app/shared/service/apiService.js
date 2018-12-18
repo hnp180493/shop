@@ -20,7 +20,7 @@
                         notificationService.displayError("Authen is required");
                     } else {
                         failure(error);
-                    }                                  
+                    }
                 }
 
             );

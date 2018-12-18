@@ -2,7 +2,7 @@
 using Shop.Model.Models;
 
 namespace Shop.Data.Repositories
-{ 
+{
     public interface IProductRepository : IRepository<Product>
     {
     }

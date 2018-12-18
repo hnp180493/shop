@@ -12,7 +12,6 @@
             Status: true,
         }
 
-
         $scope.addProductCategory = addProductCategory;
 
         $scope.getSeoTitle = function () {

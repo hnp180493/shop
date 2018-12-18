@@ -1,35 +1,37 @@
 ﻿using Shop.Data.Infrastructure;
 using Shop.Data.Repositories;
 using Shop.Model.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Shop.Service
 {
     public interface IProductCategoryService
     {
         ProductCategory Add(ProductCategory productCategory);
+
         void Update(ProductCategory productCategory);
+
         IEnumerable<ProductCategory> GetAll();
+
         ProductCategory GetById(int id);
+
         IEnumerable<ProductCategory> GetAll(string keyword);
+
         void Save();
+
         ProductCategory Delete(int id);
     }
+
     public class ProductCategoryService : IProductCategoryService
     {
-        IProductCategoryRepository _repository;
-        IUnitOfWork _unitOfWork;
+        private IProductCategoryRepository _repository;
+        private IUnitOfWork _unitOfWork;
 
         public ProductCategoryService(IProductCategoryRepository repository, IUnitOfWork unitOfWork)
         {
             _repository = repository;
             _unitOfWork = unitOfWork;
         }
-
 
         public ProductCategory Add(ProductCategory productCategory)
         {

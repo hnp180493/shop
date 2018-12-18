@@ -1,9 +1,6 @@
-﻿
-
-<section class="content-header">
+﻿<section class="content-header">
     <h1>
         Danh sách loại sản phẩm
-        
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -43,19 +40,19 @@
                 </div>
                 <div class="col-md-12">
                     <div class="box">
-        
+
                         <!-- /.box-header -->
                         <div class="box-body">
                             <table class="table table-bordered">
                                 <tr>
-                                    <th><input type="checkbox" ng-click="checkAll()"/></th>
+                                    <th><input type="checkbox" ng-click="checkAll()" /></th>
                                     <th style="width: 10px">ID</th>
                                     <th>Tên danh mục</th>
                                     <th>Ngày tạo</th>
                                     <th style="width: 40px">Trạng thái</th>
                                 </tr>
                                 <tr ng-repeat="item in productCategories">
-                                    <td><input type="checkbox" ng-model="item.checked"/></td>
+                                    <td><input type="checkbox" ng-model="item.checked" /></td>
                                     <td style="width:3%">{{item.ID}}</td>
                                     <td style="width:50%">{{item.Name}}</td>
                                     <td style="width:15%">{{item.CreatedDate | date:'dd/MM/yyyy'}}</td>
@@ -90,4 +87,3 @@
     <!-- /.box -->
 </section>
 <!-- /.content -->
-

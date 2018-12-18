@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Shop.Data.Infrastructure;
+﻿using Shop.Data.Infrastructure;
 using Shop.Data.Repositories;
 using Shop.Model.Models;
-using System.Linq;
+using System.Collections.Generic;
 
 namespace Shop.Service
 {
@@ -30,8 +28,8 @@ namespace Shop.Service
 
     public class PostService : IPostService
     {
-        IPostRepository _postRepository;
-        IUnitOfWork _unitOfWork;
+        private IPostRepository _postRepository;
+        private IUnitOfWork _unitOfWork;
 
         public PostService(IPostRepository postRepository, IUnitOfWork unitOfWork)
         {
@@ -63,7 +61,6 @@ namespace Shop.Service
         {
             //TODO: Select all post by tag
             return _postRepository.GetAllByTag(tag, page, pageSize, out totalRow);
-
         }
 
         public IEnumerable<Post> GetAllPaging(int page, int pageSize, out int totalRow)

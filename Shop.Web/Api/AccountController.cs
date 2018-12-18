@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNet.Identity.Owin;
+using Shop.Web.App_Start;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using Shop.Web.App_Start;
 
 namespace Shop.Web.Api
 {
@@ -62,7 +62,5 @@ namespace Shop.Web.Api
             var result = await SignInManager.PasswordSignInAsync(userName, password, rememberMe, shouldLockout: false);
             return request.CreateResponse(HttpStatusCode.OK, result);
         }
-
-
     }
 }
