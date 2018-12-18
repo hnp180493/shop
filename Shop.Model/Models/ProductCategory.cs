@@ -1,27 +1,36 @@
-﻿using System;
-using System.Collections;
+﻿using Shop.Model.Abstract;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Shop.Model.Models
 {
     [Table("ProductCategories")]
-    public class ProductCategory
+    public class ProductCategory : Auditable
     {
         [Key]
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public string Alias { get; set; }
-        public string Description { get; set; }
-        public int? ParentID { get; set; }
-        public int? DispalyOrder { get; set; }
-        public string Image { get; set; }
-        public bool? HomeFlag { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ID { set; get; }
 
-        public virtual IEnumerable Products { get; set; }
+        [Required]
+        [MaxLength(256)]
+        public string Name { set; get; }
+
+        [Required]
+        [MaxLength(256)]
+        public string Alias { set; get; }
+
+        [MaxLength(500)]
+        public string Description { set; get; }
+
+        public int? ParentID { set; get; }
+        public int? DisplayOrder { set; get; }
+
+        [MaxLength(256)]
+        public string Image { set; get; }
+
+        public bool? HomeFlag { set; get; }
+
+        public virtual IEnumerable<Product> Products { set; get; }
     }
 }
