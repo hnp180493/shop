@@ -30,7 +30,7 @@ namespace Shop.Web.Api
             {
                 var data = _productService.GetAll(keyword);
                 int totalRows = data.Count();
-                var queryData = data.Skip((page - 1) * pageSize).Take(pageSize);
+                var queryData = data.Skip((page) * pageSize).Take(pageSize);
                 var mapData = Mapper.Map<List<ProductViewModel>>(queryData);
 
                 var pagination = new Pagination<ProductViewModel>

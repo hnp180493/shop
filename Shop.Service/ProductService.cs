@@ -1,4 +1,5 @@
-﻿using Shop.Data.Infrastructure;
+﻿using Shop.Common;
+using Shop.Data.Infrastructure;
 using Shop.Data.Repositories;
 using Shop.Model.Models;
 using System;
@@ -22,11 +23,15 @@ namespace Shop.Service
     public class ProductService: IProductService
     {
         IProductRepository _repository;
+        IProductTagRepository _productTagRepository;
+        ITagRepository _tagRepository;
         IUnitOfWork _unitOfWork;
 
-        public ProductService(IProductRepository repository, IUnitOfWork unitOfWork)
+        public ProductService(IProductRepository repository, IUnitOfWork unitOfWork, IProductTagRepository productTagRepository,ITagRepository tagRepository)
         {
             _repository = repository;
+            _productTagRepository = productTagRepository;
+            _tagRepository = tagRepository;
             _unitOfWork = unitOfWork;
         }
 
@@ -35,20 +40,32 @@ namespace Shop.Service
         {
             var result = _repository.Add(product);
             _unitOfWork.Commit();
-            if (string.IsNullOrEmpty(product.Tags))
+            if (!string.IsNullOrEmpty(product.Tags))
             {
                 var listTags = product.Tags.Split(',');
                 foreach(var tag in listTags)
                 {
-                    //var tagId = StringHelper
-                    //ProductTag productTag = new ProductTag
-                    //{
+                    var tagId = StringHelper.ToUnsignString(tag);
+                    if(_tagRepository.Count(x=>x.ID == tag) == 0)
+                    {
+                        Tag tagAdd = new Tag
+                        {
+                            ID = tagId,
+                            Name = tag,
+                            Type = CommonConstants.ProductTag,
 
-                    //}
-                    _repository.Add(product);
+                        };
+                        _tagRepository.Add(tagAdd);
+                    }
+                    ProductTag productTag = new ProductTag
+                    {
+                        ProductID = product.ID,
+                        TagID = tagId
+                    };
+                    _productTagRepository.Add(productTag);
                 }
             }
-            return _repository.Add(product);
+            return product;
         }
 
         public Product Delete(int id)
@@ -80,9 +97,35 @@ namespace Shop.Service
             _unitOfWork.Commit();
         }
 
-        public void Update(Product Product)
+        public void Update(Product product)
         {
-            _repository.Update(Product);
+            _repository.Update(product);
+            if (string.IsNullOrEmpty(product.Tags))
+            {
+                var listTags = product.Tags.Split(',');
+                foreach (var tag in listTags)
+                {
+                    var tagId = StringHelper.ToUnsignString(tag);
+                    if (_tagRepository.Count(x => x.ID == tag) == 0)
+                    {
+                        Tag tagAdd = new Tag
+                        {
+                            ID = tagId,
+                            Name = tag,
+                            Type = CommonConstants.ProductTag,
+
+                        };
+                        _tagRepository.Add(tagAdd);
+                    }
+                    _productTagRepository.DeleteMulti(x => x.ProductID == product.ID);
+                    ProductTag productTag = new ProductTag
+                    {
+                        ProductID = product.ID,
+                        TagID = tagId
+                    };
+                    _productTagRepository.Add(productTag);
+                }
+            }
         }
     }
 }

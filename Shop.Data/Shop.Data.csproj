@@ -77,6 +77,10 @@
     <Compile Include="Migrations\201812141547405_addIdentityLogin.Designer.cs">
       <DependentUpon>201812141547405_addIdentityLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812171240122_addTag.cs" />
+    <Compile Include="Migrations\201812171240122_addTag.Designer.cs">
+      <DependentUpon>201812171240122_addTag.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
@@ -115,6 +119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812141547405_addIdentityLogin.resx">
       <DependentUpon>201812141547405_addIdentityLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812171240122_addTag.resx">
+      <DependentUpon>201812171240122_addTag.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

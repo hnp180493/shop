@@ -11,17 +11,18 @@
         commonService, notificationService,
         $stateParams, $state) {
 
-        $scope.category = [];
+        $scope.product = [];
         $scope.getById = getById;
         $scope.editproduct = editproduct;
         $scope.getSeoTitle = function () {
-            $scope.category.Alias = commonService.getSeoTitle($scope.category.Name);
+            $scope.product.Alias = commonService.getSeoTitle($scope.product.Name);
         }
         
         function getById() {
             apiService.get(`/api/product/getbyid?id=${$stateParams.id}`, null,
                 function (result) {
-                    $scope.category = result.data;
+                    $scope.product = result.data;
+                    $scope.moreImages = JSON.parse($scope.product.MoreImages);
                     
                 },
                 function (error) {
@@ -32,7 +33,7 @@
         }
 
         $scope.loadCategories = function () {
-            apiService.get("/api/product/getParents", null,
+            apiService.get("/api/productCategory/getParents", null,
                 function (result) {
                     $scope.Categories = result.data;
                 },
@@ -43,7 +44,7 @@
         }
 
         function editproduct() {
-            apiService.put('/api/product/update', $scope.category,
+            apiService.put('/api/product/update', $scope.product,
                 function (result) {
                     notificationService.displaySuccess("Cập nhật thành công!");
                     $state.go('products');
@@ -55,11 +56,31 @@
             );
         }
 
+        $scope.chooseImage = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.$apply(function () {
+                    $scope.product.Image = fileUrl;
+                });
+            }
+            finder.popup();
+        }
 
+        $scope.moreImages = [];
+        $scope.chooseMoreImage = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.$apply(function () {
+                    $scope.moreImages.push(fileUrl);
+                });
+
+            }
+            finder.popup();
+        }
         
         $scope.getById();
 
-        $scope.loadParentCategories();
+        $scope.loadCategories();
     }
 
 
