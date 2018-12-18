@@ -5651,6 +5651,67 @@
     <Content Include="Content\Admin\libs\toastr\toastr.js" />
     <Content Include="Content\Admin\libs\toastr\toastr.min.css" />
     <Content Include="Content\Admin\libs\toastr\toastr.min.js" />
+    <Content Include="Content\Client\css\bootstrap.css" />
+    <Content Include="Content\Client\css\etalage.css" />
+    <Content Include="Content\Client\css\form.css" />
+    <Content Include="Content\Client\css\style.css" />
+    <Content Include="Content\Client\images\a-star.png" />
+    <Content Include="Content\Client\images\arrow1.png" />
+    <Content Include="Content\Client\images\arrow2.png" />
+    <Content Include="Content\Client\images\avatar.png" />
+    <Content Include="Content\Client\images\b-arrow.png" />
+    <Content Include="Content\Client\images\ba.jpg" />
+    <Content Include="Content\Client\images\baa.jpg" />
+    <Content Include="Content\Client\images\bag.jpg" />
+    <Content Include="Content\Client\images\bag1.jpg" />
+    <Content Include="Content\Client\images\bo.jpg" />
+    <Content Include="Content\Client\images\bott.jpg" />
+    <Content Include="Content\Client\images\bottle.jpg" />
+    <Content Include="Content\Client\images\ch.jpg" />
+    <Content Include="Content\Client\images\facebook.png" />
+    <Content Include="Content\Client\images\gpluse.png" />
+    <Content Include="Content\Client\images\img-sprite.png" />
+    <Content Include="Content\Client\images\label_new.png" />
+    <Content Include="Content\Client\images\logo.png" />
+    <Content Include="Content\Client\images\pi.jpg" />
+    <Content Include="Content\Client\images\pi1.jpg" />
+    <Content Include="Content\Client\images\pi2.jpg" />
+    <Content Include="Content\Client\images\pi3.jpg" />
+    <Content Include="Content\Client\images\pi4.jpg" />
+    <Content Include="Content\Client\images\pic.jpg" />
+    <Content Include="Content\Client\images\pic1.jpg" />
+    <Content Include="Content\Client\images\pic10.jpg" />
+    <Content Include="Content\Client\images\pic11.jpg" />
+    <Content Include="Content\Client\images\pic12.jpg" />
+    <Content Include="Content\Client\images\pic13.jpg" />
+    <Content Include="Content\Client\images\pic2.jpg" />
+    <Content Include="Content\Client\images\pic3.jpg" />
+    <Content Include="Content\Client\images\pic4.jpg" />
+    <Content Include="Content\Client\images\pic5.jpg" />
+    <Content Include="Content\Client\images\pic6.jpg" />
+    <Content Include="Content\Client\images\pic7.jpg" />
+    <Content Include="Content\Client\images\pic8.jpg" />
+    <Content Include="Content\Client\images\review.png" />
+    <Content Include="Content\Client\images\rss.png" />
+    <Content Include="Content\Client\images\s1.jpg" />
+    <Content Include="Content\Client\images\s2.jpg" />
+    <Content Include="Content\Client\images\s3.jpg" />
+    <Content Include="Content\Client\images\s4.jpg" />
+    <Content Include="Content\Client\images\sh.jpg" />
+    <Content Include="Content\Client\images\si1.jpg" />
+    <Content Include="Content\Client\images\si2.jpg" />
+    <Content Include="Content\Client\images\si3.jpg" />
+    <Content Include="Content\Client\images\si4.jpg" />
+    <Content Include="Content\Client\images\star.png" />
+    <Content Include="Content\Client\images\tick1.png" />
+    <Content Include="Content\Client\images\twitter.png" />
+    <Content Include="Content\Client\images\wa.jpg" />
+    <Content Include="Content\Client\images\wat.jpg" />
+    <Content Include="Content\Client\images\zoom.png" />
+    <Content Include="Content\Client\js\jquery.etalage.min.js" />
+    <Content Include="Content\Client\js\jquery.flexisel.js" />
+    <Content Include="Content\Client\js\jquery.min.js" />
+    <Content Include="Content\Client\js\jquery.wmuSlider.js" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Uploadfiles\45878432_3129453247103114_3752593628950691840_n.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -5668,9 +5729,7 @@
     </Content>
     <Content Include="Views\Web.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\Client\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -6222,10 +6281,15 @@
     <Content Include="Content\Admin\libs\angular-local-storage\LICENSE" />
     <Content Include="Content\Admin\libs\angular-local-storage\package.json" />
     <Content Include="Content\Admin\libs\angular-local-storage\README.md" />
+    <Content Include="Content\Client\images\Thumbs.db" />
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Footer.cshtml" />
+    <Content Include="Views\Shared\Header.cshtml" />
+    <Content Include="Views\Shared\Category.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shop.Common\Shop.Common.csproj">
