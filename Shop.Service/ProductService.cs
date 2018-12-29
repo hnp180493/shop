@@ -3,7 +3,7 @@ using Shop.Data.Infrastructure;
 using Shop.Data.Repositories;
 using Shop.Model.Models;
 using System.Collections.Generic;
-
+using System.Linq;
 namespace Shop.Service
 {
     public interface IProductService
@@ -21,6 +21,8 @@ namespace Shop.Service
         void Save();
 
         Product Delete(int id);
+        IEnumerable<Product> GetLatest(int top);
+        IEnumerable<Product> GetHot(int top);
     }
 
     public class ProductService : IProductService
@@ -91,6 +93,16 @@ namespace Shop.Service
         public Product GetById(int id)
         {
             return _repository.GetSingleById(id);
+        }
+
+        public IEnumerable<Product> GetHot(int top)
+        {
+            return _repository.GetMulti(x=>x.Status && x.HotFlag == true).OrderByDescending(x=>x.CreatedDate).Take(top);
+        }
+
+        public IEnumerable<Product> GetLatest(int top)
+        {
+            return _repository.GetMulti(x => x.Status).OrderByDescending(x => x.CreatedDate).Take(top);
         }
 
         public void Save()

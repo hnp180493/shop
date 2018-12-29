@@ -11,7 +11,7 @@
         $stateParams, $state) {
         $scope.product = [];
         $scope.getById = getById;
-        $scope.editproduct = editproduct;
+        $scope.editProduct = editProduct;
         $scope.getSeoTitle = function () {
             $scope.product.Alias = commonService.getSeoTitle($scope.product.Name);
         }
@@ -40,7 +40,7 @@
             );
         }
 
-        function editproduct() {
+        function editProduct() {
             apiService.put('/api/product/update', $scope.product,
                 function (result) {
                     notificationService.displaySuccess("Cập nhật thành công!");

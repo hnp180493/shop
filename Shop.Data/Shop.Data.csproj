@@ -85,6 +85,10 @@
     <Compile Include="Migrations\201812180455100_addUser.Designer.cs">
       <DependentUpon>201812180455100_addUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812291814446_AddContentSlide.cs" />
+    <Compile Include="Migrations\201812291814446_AddContentSlide.Designer.cs">
+      <DependentUpon>201812291814446_AddContentSlide.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
@@ -129,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812180455100_addUser.resx">
       <DependentUpon>201812180455100_addUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812291814446_AddContentSlide.resx">
+      <DependentUpon>201812291814446_AddContentSlide.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

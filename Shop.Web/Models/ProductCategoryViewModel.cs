@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Shop.Model.Abstract;
+using Shop.Model.Models;
 
-namespace Shop.Model.Models
+namespace Shop.Web.Models
 {
     public class ProductCategoryViewModel
     {

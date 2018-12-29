@@ -2,6 +2,7 @@
 using Shop.Model.Models;
 using Shop.Service;
 using Shop.Web.Infrastructure.Core;
+using Shop.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
