@@ -16,6 +16,8 @@ namespace Shop.Service
 
         Product GetById(int id);
 
+        IEnumerable<Product> GetRelatedProduct(int id, int top);
+
         IEnumerable<Product> GetAll(string keyword);
 
         void Save();
@@ -156,6 +158,14 @@ namespace Shop.Service
             }
             totalRow = products.Count();
             return products.Skip((page - 1) * pageSize).Take(pageSize);
+        }
+
+        public IEnumerable<Product> GetRelatedProduct(int id, int top)
+        {
+            var product = _repository.GetSingleById(id);
+            return _repository
+                .GetMulti(x => x.Status && x.ID != id && x.CategoryID == product.CategoryID)
+                .OrderByDescending(x => x.CreatedDate).Take(top);
         }
 
         public void Save()

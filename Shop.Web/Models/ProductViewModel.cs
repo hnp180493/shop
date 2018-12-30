@@ -54,5 +54,6 @@ namespace Shop.Web.Models
         public bool Status { set; get; }
 
         public string Tags { get; set; }
+        public int Quantity { get; set; }
     }
 }
