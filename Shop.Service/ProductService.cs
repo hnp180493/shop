@@ -24,7 +24,9 @@ namespace Shop.Service
         IEnumerable<Product> GetLatest(int top);
         IEnumerable<Product> GetHot(int top);
 
-        IEnumerable<Product> GetListProductByCategoryPaging(int categoryId, int page, int pageSize, out int totalRow);
+        IEnumerable<Product> GetListProductByCategoryPaging(int categoryId, int page, int pageSize, string sort, out int totalRow);
+        IEnumerable<string> GetListProductByName(string name);
+        IEnumerable<Product> GetListProductByName(string name, int page, int pageSize, string sort, out int totalRow);
     }
 
     public class ProductService : IProductService
@@ -107,11 +109,53 @@ namespace Shop.Service
             return _repository.GetMulti(x => x.Status).OrderByDescending(x => x.CreatedDate).Take(top);
         }
 
-        public IEnumerable<Product> GetListProductByCategoryPaging(int categoryId, int page, int pageSize, out int totalRow)
+        public IEnumerable<Product> GetListProductByCategoryPaging(int categoryId, int page, int pageSize, string sort, out int totalRow)
         {
             var products = _repository.GetMulti(x => x.Status && x.CategoryID == categoryId);
+            switch (sort)
+            {
+                case "popular":
+                    products = products.OrderByDescending(x => x.ViewCount);
+                    break;
+                case "promotion":
+                    products = products.OrderByDescending(x => x.PromotionPrice);
+                    break;
+                case "price":
+                    products = products.OrderBy(x => x.Price);
+                    break;
+                default:
+                    products = products.OrderByDescending(x => x.CreatedDate);
+                    break;
+            }
             totalRow = products.Count();
             return products.Skip((page - 1)*pageSize).Take(pageSize);
+        }
+
+        public IEnumerable<string> GetListProductByName(string name)
+        {
+            return _repository.GetMulti(x => x.Status && x.Name.Contains(name)).Select(y => y.Name);
+        }
+
+        public IEnumerable<Product> GetListProductByName(string name, int page, int pageSize, string sort, out int totalRow)
+        {
+            var products = _repository.GetMulti(x => x.Status && x.Name.Contains(name));
+            switch (sort)
+            {
+                case "popular":
+                    products = products.OrderByDescending(x => x.ViewCount);
+                    break;
+                case "promotion":
+                    products = products.OrderByDescending(x => x.PromotionPrice);
+                    break;
+                case "price":
+                    products = products.OrderBy(x => x.Price);
+                    break;
+                default:
+                    products = products.OrderByDescending(x => x.CreatedDate);
+                    break;
+            }
+            totalRow = products.Count();
+            return products.Skip((page - 1) * pageSize).Take(pageSize);
         }
 
         public void Save()

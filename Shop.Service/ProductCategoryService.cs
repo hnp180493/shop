@@ -2,7 +2,7 @@
 using Shop.Data.Repositories;
 using Shop.Model.Models;
 using System.Collections.Generic;
-
+using System.Linq;
 namespace Shop.Service
 {
     public interface IProductCategoryService
@@ -20,6 +20,7 @@ namespace Shop.Service
         void Save();
 
         ProductCategory Delete(int id);
+
     }
 
     public class ProductCategoryService : IProductCategoryService
@@ -61,6 +62,8 @@ namespace Shop.Service
         {
             return _repository.GetSingleById(id);
         }
+
+
 
         public void Save()
         {

@@ -26,14 +26,15 @@ namespace Shop.Web.Controllers
             return View();
         }
 
-        public ActionResult Category(int id, int page = 1)
+        public ActionResult Category(int id, int page = 1, string sort="")
         {
             int pageSize = int.Parse(ConfigHelper.GetByKey("PageSize"));
             int maxPage = int.Parse(ConfigHelper.GetByKey("MaxPage"));
             int totalRows;
             var categoryModel = _productCategoryService.GetById(id);
             ViewBag.Category = Mapper.Map<ProductCategoryViewModel>(categoryModel);
-            var productModel = _productService.GetListProductByCategoryPaging(id, page, pageSize, out totalRows);
+            ViewBag.Sort = sort;
+            var productModel = _productService.GetListProductByCategoryPaging(id, page, pageSize, sort, out totalRows);
             var productView = Mapper.Map<IEnumerable<ProductViewModel>>(productModel);
             var pagination = new Pagination<ProductViewModel>
             {
@@ -44,6 +45,35 @@ namespace Shop.Web.Controllers
                 TotalPages = (int)Math.Ceiling((decimal)(totalRows / pageSize))
             };
             return View(pagination);
+        }
+
+        public ActionResult Search(string name, int page = 1, string sort = "")
+        {
+            int pageSize = int.Parse(ConfigHelper.GetByKey("PageSize"));
+            int maxPage = int.Parse(ConfigHelper.GetByKey("MaxPage"));
+            int totalRows;
+            ViewBag.Keyword = name;
+            ViewBag.Sort = sort;
+            var productModel = _productService.GetListProductByName(name, page, pageSize, sort, out totalRows);
+            var productView = Mapper.Map<IEnumerable<ProductViewModel>>(productModel);
+            var pagination = new Pagination<ProductViewModel>
+            {
+                Items = productView,
+                TotalCount = totalRows,
+                MaxPage = maxPage,
+                Page = page,
+                TotalPages = (int)Math.Ceiling((double)totalRows/pageSize)
+            };
+            return View(pagination);
+        }
+
+        public JsonResult GetListProductByName(string name)
+        {
+            var data = _productService.GetListProductByName(name);
+            return Json(new
+            {
+                data = data
+            }, JsonRequestBehavior.AllowGet);
         }
     }
 }

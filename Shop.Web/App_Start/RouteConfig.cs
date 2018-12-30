@@ -22,6 +22,12 @@ namespace Shop.Web
             );
 
             routes.MapRoute(
+              name: "Search",
+              url: "tim-kiem.html",
+              defaults: new { controller = "Product", action = "Search", id = UrlParameter.Optional }
+           );
+
+            routes.MapRoute(
                name: "ProductCategory",
                url: "{alias}.pc-{id}.html",
                defaults: new { controller = "Product", action = "Category", id = UrlParameter.Optional }
