@@ -223,8 +223,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -5731,7 +5734,10 @@
     </Content>
     <Content Include="Views\Web.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\About\" />
+    <Folder Include="Views\Account\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -6292,6 +6298,7 @@
     <Content Include="Views\Shared\Footer.cshtml" />
     <Content Include="Views\Shared\Header.cshtml" />
     <Content Include="Views\Shared\Category.cshtml" />
+    <Content Include="Views\Product\Category.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shop.Common\Shop.Common.csproj">
