@@ -11,25 +11,25 @@ namespace Shop.Web
 
             routes.MapRoute(
               name: "Login",
-              url: "dang-nhap",
+              url: "dang-nhap.html",
               defaults: new { controller = "Account", action = "Login", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(
                name: "About",
-               url: "gioi-thieu",
+               url: "gioi-thieu.html",
                defaults: new { controller = "About", action = "Index", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(
-               name: "Product Category",
-               url: "{alias}.pc-{id}",
+               name: "ProductCategory",
+               url: "{alias}.pc-{id}.html",
                defaults: new { controller = "Product", action = "Category", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(
                name: "Product",
-               url: "{alias}.p-{id}",
+               url: "{alias}.p-{id}.html",
                defaults: new { controller = "Product", action = "Detail", id = UrlParameter.Optional }
             );
 

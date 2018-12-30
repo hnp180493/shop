@@ -22,21 +22,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </head>
 <body>
     <!--header-->
-    @{ Html.RenderAction("Header", "Home");}
-    <!---->
+    @{Html.RenderAction("Header", "Home");}
     <div class="container">
         @RenderBody()
+        @{Html.RenderAction("Category", "Home");}
+        <div class="clearfix"> </div>
     </div>
-    </a>
-    <!---->
-    @RenderSection("homeProducts", required:false)
-    <div class="clearfix"> </div>
-    </div>
-    @{ Html.RenderAction("Category", "Home");}
-    <div class="clearfix"> </div>
-    </div>
-
-    <!---->
    @{Html.RenderAction("Footer", "Home");}
 
 </body>

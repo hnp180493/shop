@@ -98,6 +98,7 @@
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -6290,6 +6291,8 @@
     <Content Include="Content\Admin\libs\angular-local-storage\package.json" />
     <Content Include="Content\Admin\libs\angular-local-storage\README.md" />
     <Content Include="Content\Client\images\Thumbs.db" />
+    <Content Include="connectionStrings.config" />
+    <Content Include="AppSetting.config" />
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />

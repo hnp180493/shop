@@ -23,6 +23,8 @@ namespace Shop.Service
         Product Delete(int id);
         IEnumerable<Product> GetLatest(int top);
         IEnumerable<Product> GetHot(int top);
+
+        IEnumerable<Product> GetListProductByCategoryPaging(int categoryId, int page, int pageSize, out int totalRow);
     }
 
     public class ProductService : IProductService
@@ -103,6 +105,13 @@ namespace Shop.Service
         public IEnumerable<Product> GetLatest(int top)
         {
             return _repository.GetMulti(x => x.Status).OrderByDescending(x => x.CreatedDate).Take(top);
+        }
+
+        public IEnumerable<Product> GetListProductByCategoryPaging(int categoryId, int page, int pageSize, out int totalRow)
+        {
+            var products = _repository.GetMulti(x => x.Status && x.CategoryID == categoryId);
+            totalRow = products.Count();
+            return products.Skip((page - 1)*pageSize).Take(pageSize);
         }
 
         public void Save()
