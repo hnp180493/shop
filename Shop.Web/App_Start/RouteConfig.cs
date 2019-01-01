@@ -39,6 +39,18 @@ namespace Shop.Web
                defaults: new { controller = "Product", action = "Detail", id = UrlParameter.Optional }
             );
 
+            routes.MapRoute(
+              name: "Tag",
+              url: "{tagId}.html",
+              defaults: new { controller = "Product", action = "GetListProductByTag", tagId = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+              name: "Page",
+              url: "trang/{alias}.html",
+              defaults: new { controller = "Page", action = "Index", alias = UrlParameter.Optional }
+            );
+
 
             routes.MapRoute(
                 name: "Default",

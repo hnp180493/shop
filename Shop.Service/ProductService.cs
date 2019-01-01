@@ -29,6 +29,10 @@ namespace Shop.Service
         IEnumerable<Product> GetListProductByCategoryPaging(int categoryId, int page, int pageSize, string sort, out int totalRow);
         IEnumerable<string> GetListProductByName(string name);
         IEnumerable<Product> GetListProductByName(string name, int page, int pageSize, string sort, out int totalRow);
+        void IncreaseView(int id);
+        IEnumerable<Tag> GetTagByProductId(int id);
+        Tag GetTag(string tagId);
+        IEnumerable<Product> GetListProductByTag(string tagId, int page, int pageSize, out int totalRows);
     }
 
     public class ProductService : IProductService
@@ -56,7 +60,7 @@ namespace Shop.Service
                 foreach (var tag in listTags)
                 {
                     var tagId = StringHelper.ToUnsignString(tag);
-                    if (_tagRepository.Count(x => x.ID == tag) == 0)
+                    if (_tagRepository.Count(x => x.ID == tagId) == 0)
                     {
                         Tag tagAdd = new Tag
                         {
@@ -160,12 +164,49 @@ namespace Shop.Service
             return products.Skip((page - 1) * pageSize).Take(pageSize);
         }
 
+        //public IEnumerable<Product> GetListProductByTag(string tagId, int page, int pageSize, out int totalRows)
+        //{
+        //    var products = _productTagRepository.GetMulti(x => x.TagID == tagId, new string[] { "Product" }).Select(y => y.Product);
+        //    totalRows = products.Count();
+        //    return products.Skip((page - 1)*pageSize).Take(pageSize);
+        //}
+
+        public IEnumerable<Product> GetListProductByTag(string tagId, int page, int pageSize, out int totalRows)
+        {
+            var products = _productTagRepository.GetListProductByTag(tagId);
+            totalRows = products.Count();
+            return products.Skip((page - 1) * pageSize).Take(pageSize);
+        }
+
         public IEnumerable<Product> GetRelatedProduct(int id, int top)
         {
             var product = _repository.GetSingleById(id);
             return _repository
                 .GetMulti(x => x.Status && x.ID != id && x.CategoryID == product.CategoryID)
                 .OrderByDescending(x => x.CreatedDate).Take(top);
+        }
+
+        public Tag GetTag(string tagId)
+        {
+            return _tagRepository.GetSingleByCondition(x => x.ID == tagId);
+        }
+
+        public IEnumerable<Tag> GetTagByProductId(int id)
+        {
+            return _productTagRepository.GetMulti(x => x.ProductID == id, new string[] { "Tag" }).Select(y => y.Tag);
+        }
+
+        public void IncreaseView(int id)
+        {
+            var product = _repository.GetSingleById(id);
+            if (product.ViewCount.HasValue)
+            {
+                product.ViewCount += 1;
+            }
+            else
+            {
+                product.ViewCount = 1;
+            }
         }
 
         public void Save()
@@ -176,13 +217,13 @@ namespace Shop.Service
         public void Update(Product product)
         {
             _repository.Update(product);
-            if (string.IsNullOrEmpty(product.Tags))
+            if (!string.IsNullOrEmpty(product.Tags))
             {
                 var listTags = product.Tags.Split(',');
                 foreach (var tag in listTags)
                 {
                     var tagId = StringHelper.ToUnsignString(tag);
-                    if (_tagRepository.Count(x => x.ID == tag) == 0)
+                    if (_tagRepository.Count(x => x.ID == tagId) == 0)
                     {
                         Tag tagAdd = new Tag
                         {

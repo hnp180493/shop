@@ -107,12 +107,21 @@ namespace Shop.Data.Infrastructure
         public virtual IEnumerable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] includes = null)
         {
             //HANDLE INCLUDES FOR ASSOCIATED OBJECTS IF APPLICABLE
+            //if (includes != null && includes.Count() > 0)
+            //{
+            //    var query = dataContext.Set<T>().Include(includes.First());
+            //    foreach (var include in includes.Skip(1))
+            //        query = query.Include(include);
+            //    return query.Where<T>(predicate).AsQueryable<T>();
+            //}
+
             if (includes != null && includes.Count() > 0)
             {
-                var query = dataContext.Set<T>().Include(includes.First());
+                var query = dataContext.Set<T>().Where<T>(predicate).AsQueryable<T>();
+                query = query.Include(includes.First());
                 foreach (var include in includes.Skip(1))
                     query = query.Include(include);
-                return query.Where<T>(predicate).AsQueryable<T>();
+                return query;
             }
 
             return dataContext.Set<T>().Where<T>(predicate).AsQueryable<T>();

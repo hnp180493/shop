@@ -7,6 +7,7 @@
 
     IEnumerable<ProductViewModel> relatedProduct = ViewBag.RelatedProduct;
     List<string> moreImages = ViewBag.MoreImages;
+    IEnumerable<TagViewModel> listTag = ViewBag.Tags;
 }
 <link rel="stylesheet" href="/Content/Client/css/etalage.css" type="text/css" media="all" />
 @section jsFooter{
@@ -84,14 +85,27 @@
 
             <h4>@Model.Name</h4>
             <div class="cart-b">
-                <div class="left-n ">$329.58</div>
+                <div class="left-n ">$@Model.Price</div>
                 <a class="now-get get-cart-in" href="/them-vao-gio-hang">ADD TO CART</a>
                 <div class="clearfix"></div>
             </div>
             <h6>@Model.Quantity</h6>
             @Model.Description
+            <div class="tag">
+                <h5>Tag: </h5>
+                <ul class="taglist">
+                    @foreach (var item in listTag)
+                    {
+                        <li>
+                            <a href="/@(item.ID).html">@(item.Name) </a>
+                        </li>
+                    }
+
+                </ul>
+            </div>
+            <div class="clearfix"></div>
             <div class="share">
-                <h5>Share Product :</h5>
+                <h5>Chia sẻ :</h5>
                 <ul class="share_nav">
                     <li><a href="#"><img src="/Content/Client/images/facebook.png" title="facebook"></a></li>
                     <li><a href="#"><img src="/Content/Client/images/twitter.png" title="Twiiter"></a></li>

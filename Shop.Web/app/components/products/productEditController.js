@@ -41,6 +41,7 @@
         }
 
         function editProduct() {
+            $scope.product.MoreImages = JSON.stringify($scope.moreImages);
             apiService.put('/api/product/update', $scope.product,
                 function (result) {
                     notificationService.displaySuccess("Cập nhật thành công!");

@@ -29,6 +29,8 @@ namespace Shop.Web.Controllers
             var relatedProduct = _productService.GetRelatedProduct(id, 7);
             ViewBag.RelatedProduct = Mapper.Map<IEnumerable<ProductViewModel>>(relatedProduct);
 
+            var listTags = _productService.GetTagByProductId(id);
+            ViewBag.Tags = Mapper.Map<IEnumerable<TagViewModel>>(listTags);
             ViewBag.MoreImages = new JavaScriptSerializer().Deserialize<List<string>>(productView.MoreImages);
             return View(productView);
         }
@@ -73,6 +75,26 @@ namespace Shop.Web.Controllers
             };
             return View(pagination);
         }
+
+        public ActionResult GetListProductByTag(string tagId, int page = 1)
+        {
+            int pageSize = int.Parse(ConfigHelper.GetByKey("PageSize"));
+            int maxPage = int.Parse(ConfigHelper.GetByKey("MaxPage"));
+            int totalRows;
+            ViewBag.Tag = Mapper.Map<TagViewModel>(_productService.GetTag(tagId));
+            var productModel = _productService.GetListProductByTag(tagId, page, pageSize, out totalRows);
+            var productView = Mapper.Map<IEnumerable<ProductViewModel>>(productModel);
+            var pagination = new Pagination<ProductViewModel>
+            {
+                Items = productView,
+                TotalCount = totalRows,
+                MaxPage = maxPage,
+                Page = page,
+                TotalPages = (int)Math.Ceiling((double)totalRows / pageSize)
+            };
+            return View(pagination);
+        }
+
 
         public JsonResult GetListProductByName(string name)
         {

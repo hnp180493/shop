@@ -17,6 +17,7 @@ namespace Shop.Web.Mappings
             Mapper.CreateMap<ProductCategoryViewModel, ProductCategory>();
             Mapper.CreateMap<SlideViewModel, Slide>();
             Mapper.CreateMap<Slide, SlideViewModel>();
+            Mapper.CreateMap<Page, PageViewModel>();
         }
     }
 }

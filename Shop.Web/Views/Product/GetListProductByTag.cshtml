@@ -1,0 +1,83 @@
+﻿@using Shop.Web.Models
+@model Shop.Web.Infrastructure.Core.Pagination<ProductViewModel>
+@{
+    ViewBag.Title = "Category";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    TagViewModel tag = ViewBag.Tag;
+}
+
+
+<div class="women-product">
+    <div class=" w_content">
+        <div class="women">
+            <a href="#"><h4>Tìm kiếm: @tag.ID - <span>@Model.TotalCount sản phẩm</span> </h4></a>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <!-- grids_of_4 -->
+    <div class="grid-product">
+        @foreach (var product in Model.Items)
+        {
+            var url = $"/{product.Alias}.p-{product.ID}.html";
+            <div class="product-grid">
+                <div class="content_box">
+                    <a href="@url">
+                        <dvi class="left-grid-view grid-view-left">
+                            <img src="@product.Image" class="img-responsive watch-right" alt="" />
+                            <div class="mask">
+                                <div class="info">Quick View</div>
+                            </div>
+                        </dvi>
+                    </a>
+                </div>
+                <h4><a href="@url">@product.Name</a></h4>
+                <p>@product.Description</p>
+                @(product.Price == 0 ? "Liên hệ" : product.Price.ToString("N2"))
+            </div>
+
+        }
+        <div class="clearfix"> </div>
+        @if (Model.TotalPages > 1)
+        {
+            var startPageIndex = Math.Max(1, Model.Page - Model.MaxPage / 2);
+            var endPageIndex = Math.Min(Model.TotalPages, Model.Page + Model.MaxPage / 2);
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    @if (Model.Page > 1)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="?page=@(Model.Page - 1)" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    }
+                    @for (int i = startPageIndex; i <= endPageIndex; i++)
+                    {
+                        if (Model.Page == i)
+                        {
+                            <li class="page-item active"><a class="page-link" href="?page=@i">@i</a></li>
+                        }
+                        else
+                        {
+                            <li class="page-item"><a class="page-link" href="?page=@i">@i</a></li>
+                        }
+
+                    }
+                    @if (Model.Page < Model.TotalPages)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="?page=@(Model.Page + 1)" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        }
+    </div>
+</div>
+
+
+
+
+
