@@ -18,6 +18,8 @@ namespace Shop.Web.Mappings
             Mapper.CreateMap<SlideViewModel, Slide>();
             Mapper.CreateMap<Slide, SlideViewModel>();
             Mapper.CreateMap<Page, PageViewModel>();
+            Mapper.CreateMap<FeedbackViewModel, Feedback>();
+
         }
     }
 }

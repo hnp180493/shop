@@ -24,8 +24,10 @@ namespace Shop.Web.Controllers
             _commonService = commonService;
             _productService = productService;
         }
+
         public ActionResult Index()
         {
+            ViewBag.Time = DateTime.Now;
             var slideModel = _commonService.GetSlides();
             var slideView = Mapper.Map<IEnumerable<SlideViewModel>>(slideModel);
             var latestProductModel = _productService.GetLatest(3);
@@ -54,6 +56,7 @@ namespace Shop.Web.Controllers
         }
 
         [ChildActionOnly]
+        [OutputCache(Duration =3600)]
         public ActionResult Footer()
         {
             return PartialView();
@@ -64,6 +67,7 @@ namespace Shop.Web.Controllers
             return PartialView();
         }
         [ChildActionOnly]
+        [OutputCache(Duration =3600)]
         public ActionResult Category()
         {
             var categories = _productCategoryService.GetAll();

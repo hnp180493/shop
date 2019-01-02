@@ -1,0 +1,35 @@
+﻿@using BotDetect.Web.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="main">
+    <div class="reservation_top">
+        <div class=" contact_right">
+            <h3>Contact Form</h3>
+            <div class="contact-form">
+                <form method="post" action="/Contact/Feeback">
+                    @Html.ValidationSummary(false, "", new { @class = "alert alert-danger" })
+                    <input type="text" class="textbox" name="Name" placeholder="Name">
+                    <input type="text" class="textbox" name="Email" placeholder="Email">
+                    <textarea name="Message" placeholder="Content"></textarea>
+                    @{ MvcSimpleCaptcha contactCaptcha = new MvcSimpleCaptcha("ContactCaptcha"); }
+                    @Html.SimpleCaptcha(contactCaptcha)
+                    @Html.TextBox("CaptchaCode")
+                    <input type="submit" value="Send">
+                    <div class="clearfix"> </div>
+                </form>
+                <address class="address">
+                    <p>9870 St Vincent Place, <br>Glasgow, DC 45 Fr 45.</p>
+                    <dl>
+                        <dt> </dt>
+                        <dd>Freephone:<span> +1 800 254 2478</span></dd>
+                        <dd>Telephone:<span> +1 800 547 5478</span></dd>
+                        <dd>FAX: <span>+1 800 658 5784</span></dd>
+                        <dd>E-mail:&nbsp; <a href="mailto@vintage.com">info(at)bigshop.com</a></dd>
+                    </dl>
+                </address>
+            </div>
+        </div>
+    </div>
+</div>

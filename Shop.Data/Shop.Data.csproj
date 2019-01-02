@@ -93,9 +93,18 @@
     <Compile Include="Migrations\201812301545489_addQuantity.Designer.cs">
       <DependentUpon>201812301545489_addQuantity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901011453297_addFeedback.cs" />
+    <Compile Include="Migrations\201901011453297_addFeedback.Designer.cs">
+      <DependentUpon>201901011453297_addFeedback.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901011457196_addFeedback1.cs" />
+    <Compile Include="Migrations\201901011457196_addFeedback1.Designer.cs">
+      <DependentUpon>201901011457196_addFeedback1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
+    <Compile Include="Repositories\FeedbackRepository.cs" />
     <Compile Include="Repositories\FooterRepository.cs" />
     <Compile Include="Repositories\MenuGroupRepository.cs" />
     <Compile Include="Repositories\MenuRepository.cs" />
@@ -143,6 +152,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812301545489_addQuantity.resx">
       <DependentUpon>201812301545489_addQuantity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901011453297_addFeedback.resx">
+      <DependentUpon>201901011453297_addFeedback.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901011457196_addFeedback1.resx">
+      <DependentUpon>201901011457196_addFeedback1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
